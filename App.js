@@ -1,45 +1,32 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import * as DevMenu from "expo-dev-menu";
+import { NavigationContainer } from '@react-navigation/native';
+import { buildWebScreen } from 'react-native-web-screen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-const Button = ({ label, onPress }) => (
-  <TouchableOpacity style={styles.buttonContainer} onPress={onPress}>
-    <Text style={styles.buttonText}>{label}</Text>
-  </TouchableOpacity>
-);
+const Stack = createNativeStackNavigator();
+
+const webScreenConfig = {
+  baseURL: 'https://turbo-native-demo.glitch.me',
+  routes: {
+    Initial: {
+      urlPattern: '',
+      title: 'Turbo Native Demo',
+    },
+    Rest: {
+      urlPattern: '*',
+      title: '',
+    },
+  },
+};
+
+const WebScreen = buildWebScreen(webScreenConfig);
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Button
-        label="Open Dev Menu"
-        onPress={() => {
-          DevMenu.openMenu();
-        }}
-      />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer linking={WebScreen.linking}>
+      <Stack.Navigator>
+        <Stack.Screen {...WebScreen.screens.Initial}  />
+        <Stack.Screen {...WebScreen.screens.Rest} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  buttonContainer: {
-    backgroundColor: "#4630eb",
-    borderRadius: 4,
-    padding: 12,
-    marginVertical: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  buttonText: {
-    color: "#ffffff",
-    fontSize: 16,
-  },
-});

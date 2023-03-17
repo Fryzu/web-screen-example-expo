@@ -13,6 +13,8 @@ target 'webscreenexampleexpo' do
   use_expo_modules!
   config = use_native_modules!
 
+  pod 'Turbo', :git => 'https://github.com/hotwired/turbo-ios.git', :tag => '7.0.0-rc.6'
+
   use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
 
   # Flags change depending on the env values.
