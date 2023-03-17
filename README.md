@@ -1,4 +1,10 @@
-# Development Client example
+# React Native Web Screen example – expo dev client
+
+## About the library
+
+[React Native Web Screen](https://github.com/software-mansion-labs/react-native-turbo-demo) is an open source library that will allow you to easily bring your web application into the React Native mobile world.
+
+
 
 <p>
   <!-- iOS -->
